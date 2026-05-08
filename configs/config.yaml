@@ -3,6 +3,7 @@ data:
   processed_path: "data/processed/clean.csv"
   test_size: 0.2
   random_state: 42
+  train_cap: 50000
 
 features:
   target_col: "isFraud"
