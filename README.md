@@ -63,9 +63,7 @@ Decision Tree is the better choice for this use case — even though SVM has a h
 
 ## why SVM takes forever (and how I fixed it)
 
-SVM scales at O(n²). Training on 454k rows took **53 minutes** on an M1 Pro.
-
-I capped training data at 50k rows after SMOTE. Training time dropped to under 30 seconds with no meaningful drop in performance. Not a shortcut — a real tradeoff you'd make in production too.
+SVM scales at O(n²). I let it run on the full 454k rows for over 53 minutes — it never finished. Killed it and capped training data at 50k rows after SMOTE. Training time dropped to under 30 seconds with no meaningful drop in performance. Not a shortcut — a real tradeoff you'd make in production too.
 
 It's in `configs/config.yaml` so it's easy to change:
 
