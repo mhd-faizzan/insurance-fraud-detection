@@ -1,0 +1,19 @@
+[project]
+name = "insurance-fraud-detection"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "fastapi>=0.136.1",
+    "imbalanced-learn>=0.14.1",
+    "joblib>=1.5.3",
+    "kaggle>=2.1.2",
+    "matplotlib>=3.10.9",
+    "numpy>=2.4.4",
+    "pandas>=3.0.2",
+    "pyyaml>=6.0.3",
+    "scikit-learn>=1.8.0",
+    "seaborn>=0.13.2",
+    "uvicorn>=0.46.0",
+]

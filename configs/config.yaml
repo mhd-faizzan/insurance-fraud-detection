@@ -1,0 +1,29 @@
+data:
+  raw_path: "data/raw/train_transaction.csv"
+  processed_path: "data/processed/clean.csv"
+  test_size: 0.2
+  random_state: 42
+
+features:
+  target_col: "isFraud"
+  drop_cols: []
+  numeric_cols: []
+  categorical_cols: []
+
+models:
+  decision_tree:
+    max_depth: 10
+    min_samples_split: 20
+    random_state: 42
+    save_path: "models/decision_tree.pkl"
+  svm:
+    kernel: "rbf"
+    C: 1.0
+    gamma: "scale"
+    random_state: 42
+    save_path: "models/svm.pkl"
+
+evaluation:
+  roc_plot_path: "assets/roc_curve.png"
+  cm_plot_path: "assets/confusion_matrix.png"
+  bias_report_path: "assets/bias_report.csv"
