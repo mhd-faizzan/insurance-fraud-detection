@@ -22,12 +22,12 @@ def preprocess(df: pd.DataFrame, config: dict):
     X = df.drop(columns=["Class"])
     y = df["Class"]
 
-    # split before SMOTE 
+    # split before SMOTE — never apply SMOTE to test data
     X_train, X_test, y_train, y_test = train_test_split(
         X, y,
         test_size=config["data"]["test_size"],
         random_state=config["data"]["random_state"],
-        stratify=y  # keeps fraud ratio same in both splits
+        stratify=y
     )
 
     logger.info("train size: %d, test size: %d", len(X_train), len(X_test))
@@ -39,5 +39,10 @@ def preprocess(df: pd.DataFrame, config: dict):
 
     logger.info("train size after SMOTE: %d", len(X_train))
     logger.info("fraud cases after SMOTE: %d", y_train.sum())
+
+    # cap training size - bc svm struggle on working with data on scale let's keep that low
+    cap = config["data"]["train_cap"]
+    X_train, y_train = X_train[:cap], y_train[:cap]
+    logger.info("train size capped at: %d", len(X_train))
 
     return X_train, X_test, y_train, y_test
