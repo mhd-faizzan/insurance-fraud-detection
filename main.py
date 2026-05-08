@@ -3,6 +3,7 @@ import yaml
 from pipeline.data.load_data import load_raw_data
 from pipeline.data.preprocess import preprocess
 from pipeline.models.train import train_decision_tree, train_svm
+from pipeline.models.evaluate import evaluate
 
 logging.basicConfig(
     level=logging.INFO,
@@ -23,6 +24,8 @@ def main() -> None:
 
     dt_model = train_decision_tree(X_train, y_train, config)
     svm_model = train_svm(X_train, y_train, config)
+
+    evaluate(dt_model, svm_model, X_test, y_test, config)
 
     logger.info("done")
 
