@@ -1,5 +1,6 @@
 import logging
 import yaml
+from pipeline.data.load_data import load_raw_data
 
 logging.basicConfig(
     level=logging.INFO,
@@ -14,7 +15,11 @@ def main() -> None:
         config = yaml.safe_load(f)
 
     logger.info("starting pipeline")
-    logger.info("config sections loaded: %s", list(config.keys()))
+
+    df = load_raw_data(config)
+    logger.info("shape: %s", str(df.shape))
+    logger.info("columns: %s", list(df.columns))
+
     logger.info("done")
 
 
