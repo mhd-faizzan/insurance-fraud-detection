@@ -1,6 +1,7 @@
 import logging
 import yaml
 from pipeline.data.load_data import load_raw_data
+from pipeline.data.preprocess import preprocess
 
 logging.basicConfig(
     level=logging.INFO,
@@ -17,8 +18,7 @@ def main() -> None:
     logger.info("starting pipeline")
 
     df = load_raw_data(config)
-    logger.info("shape: %s", str(df.shape))
-    logger.info("columns: %s", list(df.columns))
+    X_train, X_test, y_train, y_test = preprocess(df, config)
 
     logger.info("done")
 
